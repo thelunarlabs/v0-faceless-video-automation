@@ -29,6 +29,7 @@ import {
 import { IconBrandYoutube, IconBrandTiktok, IconBrandInstagram } from "@tabler/icons-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { InfiniteCarousel } from "@/components/infinite-carousel"
+import { VerticalVideoCarousel } from "@/components/vertical-video-carousel"
 
 export default function LandingPage() {
   const [activeTestimonial, setActiveTestimonial] = useState(0)
@@ -72,6 +73,28 @@ export default function LandingPage() {
     },
   ]
 
+  // Local brainrot vertical videos for carousels
+  const carouselVideos1 = [
+    { id: "v1", url: "/247-sunscreen-ad.mp4" },
+    { id: "v2", url: "/Flicker in the Shadows.mp4" },
+    { id: "v3", url: "/minecraft-parkour-video.mp4" },
+    { id: "v4", url: "/The Dynamic Blueprint of Life.mp4" },
+  ]
+
+  const carouselVideos2 = [
+    { id: "v5", url: "/The Universe Smells Like Burnt Steak.mp4" },
+    { id: "v6", url: "/minecraft-parkour-video (1).mp4" },
+    { id: "v7", url: "/247-sunscreen-ad.mp4" },
+    { id: "v8", url: "/Flicker in the Shadows.mp4" },
+  ]
+
+  const carouselVideos3 = [
+    { id: "v9", url: "/The Dynamic Blueprint of Life.mp4" },
+    { id: "v10", url: "/The Universe Smells Like Burnt Steak.mp4" },
+    { id: "v11", url: "/minecraft-parkour-video.mp4" },
+    { id: "v12", url: "/247-sunscreen-ad.mp4" },
+  ]
+
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -112,52 +135,80 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-16 md:py-24">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <Badge variant="secondary" className="gap-1.5 text-sm">
-            <Sparkles className="size-3" />
-            Trusted by 10,000+ Creators
-          </Badge>
+      <section className="relative container mx-auto px-4 py-8 md:py-12 overflow-hidden">
+        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[700px]">
+          {/* Left Side - Text and CTAs */}
+          <div className="space-y-8">
+            <Badge variant="secondary" className="gap-1.5 text-sm">
+              <Sparkles className="size-3" />
+              Trusted by 10,000+ Creators
+            </Badge>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance leading-[1.1]">
-            Create Viral Shorts on{" "}
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient">
-              Autopilot
-            </span>
-          </h1>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
+              Create Viral Shorts on{" "}
+              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient">
+                Autopilot
+              </span>
+            </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground text-balance max-w-2xl mx-auto leading-relaxed">
-            The most optimized and easy-to-use tool for generating faceless videos. Generate unlimited content for
-            YouTube Shorts, TikTok, and Reels. Schedule once, automate forever.
-          </p>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+              The most optimized and easy-to-use tool for generating faceless videos. Generate unlimited content for
+              YouTube Shorts, TikTok, and Reels. Schedule once, automate forever.
+            </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Link href="/signup">
-              <Button size="lg" className="gap-2 w-full sm:w-auto text-base h-12 px-8">
-                Start Creating Free
-                <ArrowRight className="size-5" />
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Link href="/signup">
+                <Button size="lg" className="gap-2 w-full sm:w-auto text-base h-12 px-8">
+                  Start Creating Free
+                  <ArrowRight className="size-5" />
+                </Button>
+              </Link>
+              <Button size="lg" variant="outline" className="w-full sm:w-auto text-base h-12 px-8 gap-2 bg-transparent">
+                <Play className="size-5" />
+                Watch Demo
               </Button>
-            </Link>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto text-base h-12 px-8 gap-2 bg-transparent">
-              <Play className="size-5" />
-              Watch Demo
-            </Button>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="flex flex-wrap items-center gap-6 pt-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="size-4 text-green-500" />
+                <span>No credit card required</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="size-4 text-green-500" />
+                <span>14-day free trial</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="size-4 text-green-500" />
+                <span>Cancel anytime</span>
+              </div>
+            </div>
           </div>
 
-          {/* Trust Indicators */}
-          <div className="flex flex-wrap items-center justify-center gap-6 pt-8 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="size-4 text-green-500" />
-              <span>No credit card required</span>
+          {/* Right Side - 3 Vertical Video Carousels */}
+          <div className="hidden lg:block relative h-[800px] -my-24">
+            <div className="flex gap-2 h-full items-center justify-center">
+              {/* First Column - Moving Down */}
+              <div className="w-[200px] h-full">
+                <VerticalVideoCarousel videos={carouselVideos1} direction="down" speed={25} />
+              </div>
+
+              {/* Second Column - Moving Up */}
+              <div className="w-[200px] h-full">
+                <VerticalVideoCarousel videos={carouselVideos2} direction="up" speed={28} />
+              </div>
+
+              {/* Third Column - Moving Down */}
+              <div className="w-[200px] h-full">
+                <VerticalVideoCarousel videos={carouselVideos3} direction="down" speed={30} />
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="size-4 text-green-500" />
-              <span>14-day free trial</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="size-4 text-green-500" />
-              <span>Cancel anytime</span>
-            </div>
+            {/* Subtle sky blue gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-sky-100/5 via-sky-50/3 to-sky-100/5 dark:from-sky-950/8 dark:via-sky-900/4 dark:to-sky-950/8 pointer-events-none" />
+            {/* Fade edges to blend with background */}
+            <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-background via-background/60 to-transparent pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background via-background/60 to-transparent pointer-events-none" />
           </div>
         </div>
       </section>
